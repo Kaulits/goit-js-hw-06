@@ -11,21 +11,25 @@ const boxesContainer = document.querySelector('#boxes')
 
 btnCreate.addEventListener('click', createBoxes);
 btnDestroy.addEventListener('click', destroyBoxes);
+ let firstBox = 30;
 
 function createBoxes() {
-  const total = Number(inputEl.value);
+  const userNumber = Number(inputEl.value);
   const totalBoxes = [];
+ 
 
-  for (let i = 0; i < total; i++) {
+  for (let i = 0; i < userNumber; i++) {
     const newBox = document.createElement('div');
-    newBox.style.width = `${30 + i * 10}px`;
-    newBox.style.height = `${30 + i * 10}px`;
+    newBox.style.width = `${firstBox}px`;
+    newBox.style.height = `${firstBox}px`;
     newBox.style.backgroundColor = getRandomHexColor();
     totalBoxes.push(newBox);
+    firstBox += 10;
   }
   boxesContainer.append(...totalBoxes);
 }
 
 function destroyBoxes() {
   boxesContainer.innerHTML = '';
+  inputEl.value = '';
 }

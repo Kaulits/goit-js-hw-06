@@ -5,18 +5,17 @@ loginFormEl.addEventListener('submit', handleSubmit)
 function handleSubmit(event) {
     event.preventDefault();
     
-    const formData = new FormData(event.currentTarget);
-    const user = {};
+    const {email, password} = event.currentTarget.elements;
 
-    formData.forEach((email, password) => {
-       user[email] = password;
-       
-    });
-
-    if (user.email === '' || user.password === '') {
-        alert('All fields must be filled')
+    if (email.value === '' || password.value === '') {
+        alert('All fields must be filled');
+        return;
     } else {
-        console.log(user);
+         const form = {
+        email: email.value,
+        password: password.value
+    }
+        console.log(form);
         loginFormEl.reset();
     }
 }
